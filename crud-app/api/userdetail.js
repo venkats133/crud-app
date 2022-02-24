@@ -83,5 +83,28 @@ router.put('/:id', async (req, res, next) => {
     }
   });
 
+ /* Delete a specific user */
+router.delete('/:id', async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const user = await userdetail.findOne({
+      _id: id,
+    });
+
+    // user does not exist
+    if (!user) {
+      return next();
+    }
+    await userdetail.remove({
+      _id: id,
+    });
+
+    res.json({
+      message: 'user has been deleted',
+    });
+  } catch (error) {
+    next(error);
+  }
+});
 
 module.exports = router;
