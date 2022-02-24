@@ -1,6 +1,5 @@
 const express = require('express');
 const db = require('../db/connection');
-const schema = require('../db/schema');
 const userdetail = db.get('userdetails');
 const router = express.Router();
 
